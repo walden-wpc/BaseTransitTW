@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Environment variables (TDX API keys - do not commit)
+scripts/.env
+.env
+.env.local
+.env.*.local
+
+# Raw data fetched from TDX (intermediate build artifacts)
+scripts/raw/
+
+# Python cache
+scripts/__pycache__/
+
+# Claude Code local settings
+.claude/
+
+# Build artifacts
+tsconfig.tsbuildinfo
+shapes_report.txt
+
+# Local documentation (use README.md for public docs)
+project_guide.txt
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

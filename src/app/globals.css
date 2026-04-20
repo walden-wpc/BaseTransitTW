@@ -1,0 +1,213 @@
+/* ═══════════════════════════════════════════════════════
+   Transit Isochrone Map — Global Styles
+   深色地圖主題，玻璃態控制面板
+   ═══════════════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ── Color tokens ── */
+  --bg-deep:        #080c12;
+  --surface-1:      rgba(15, 20, 30, 0.82);
+  --surface-2:      rgba(22, 30, 46, 0.72);
+  --border:         rgba(100, 140, 210, 0.18);
+  --border-strong:  rgba(100, 140, 210, 0.35);
+
+  /* 等時線漸層 */
+  --iso-near:       rgba(56, 189, 248, 0.55);   /* 0-5 min — 天藍 */
+  --iso-mid:        rgba(99, 102, 241, 0.45);   /* 5-15 min — 靛紫 */
+  --iso-far:        rgba(168, 85, 247, 0.35);   /* 15-30 min — 紫 */
+  --iso-outline:    rgba(148, 163, 255, 0.7);
+
+  /* 站牌顏色 */
+  --stop-normal:    rgba(120, 140, 180, 0.5);
+  --stop-reachable: #34d399;   /* 可達站牌 — 翠綠 */
+  --stop-start:     #f97316;   /* 起點 — 橘 */
+  --stop-hover:     #fff;
+
+  /* ── Typography ── */
+  --font-zh:  'Noto Sans TC', sans-serif;
+  --font-en:  'Inter', sans-serif;
+  --text-primary:   #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-accent:    #7dd3fc;
+
+  /* ── Spacing & Radius ── */
+  --r-sm:  6px;
+  --r-md:  12px;
+  --r-lg:  18px;
+  --r-xl:  24px;
+
+  /* ── Shadows ── */
+  --shadow-panel: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px var(--border);
+  --shadow-glow:  0 0 24px rgba(99, 102, 241, 0.25);
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: var(--bg-deep);
+  font-family: var(--font-zh), var(--font-en);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Map container ── */
+#map-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ── Glass Panel ── */
+.glass-panel {
+  background: var(--surface-1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+/* ── Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, transform 0.1s;
+}
+.btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.5);
+  transform: translateY(-1px);
+}
+.btn:active { transform: translateY(0); }
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--text-secondary);
+}
+.btn-ghost:hover { color: var(--text-primary); background: var(--surface-2); }
+
+/* ── Select ── */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background:
+    var(--surface-2)
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3E%3Cpath stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' d='M4 6l4 4 4-4'/%3E%3C/svg%3E")
+    no-repeat right 8px center;
+  background-size: 14px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 12px;
+  padding: 6px 28px 6px 10px;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.15s;
+}
+select:focus { border-color: rgba(99,102,241,0.6); }
+select option, select optgroup { background: #0f1822; color: var(--text-primary); }
+optgroup { font-weight: 600; font-size: 11px; }
+
+/* ── Range slider ── */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(to right, var(--iso-near), var(--iso-mid), var(--iso-far));
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 8px rgba(99,102,241,0.6);
+  border: 2px solid #6366f1;
+  transition: transform 0.15s;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.badge-bus  { background: rgba(56,189,248,0.15); color: #7dd3fc; border: 1px solid rgba(56,189,248,0.3); }
+.badge-walk { background: rgba(52,211,153,0.15); color: #6ee7b7; border: 1px solid rgba(52,211,153,0.3); }
+
+/* ── Spinner ── */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(99,102,241,0.3);
+  border-top-color: #6366f1;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Pulse animation for start stop ── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+
+/* ── Fade in ── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.3s ease forwards; }
+
+/* ── MapLibre overrides ── */
+.maplibregl-ctrl-bottom-right,
+.maplibregl-ctrl-bottom-left {
+  margin-bottom: 8px;
+}
+.maplibregl-ctrl-attrib {
+  background: rgba(10,14,22,0.7) !important;
+  color: var(--text-secondary) !important;
+  font-size: 10px !important;
+}
+.maplibregl-popup-content {
+  background: var(--surface-1) !important;
+  backdrop-filter: blur(16px);
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-strong) !important;
+  border-radius: var(--r-md) !important;
+  padding: 10px 14px !important;
+  font-family: var(--font-zh) !important;
+  font-size: 13px !important;
+  box-shadow: var(--shadow-panel) !important;
+}
+.maplibregl-popup-tip { display: none; }
+.maplibregl-popup-close-button {
+  color: var(--text-secondary) !important;
+  font-size: 16px !important;
+  top: 4px; right: 6px;
+}
