@@ -1,14 +1,15 @@
-____                 ______                     _ __ _________       
+```    
   / __ )____ _________ /_  __/________ _____  ____(_) //_  __/ |     / /
    / __  / __ `/ ___/ _ \ / / / ___/ __ `/ __ \/ ___/ / __// /  | | /| / / 
    / /_/ / /_/ (__  )  __// / / /  / /_/ / / / (__  ) / /_ / /   | |/ |/ /  
    /_____/\__,_/____/\___//_/ /_/   \__,_/_/ /_/____/_/\__//_/    |__/|__/   
-____                 ______                     _ __ _________                                                                             
+```
+
 # BaseTransitTW / 臺灣等時路網（公車）
 
-Website: [➜ 開始使用 start](https://walden-wpc.github.io/BaseTransitTW/)
-License: CC BY-NC 4.0 (Attribution-NonCommercial)
-Data Source: TDX (Ministry of Transport)
+* Website: [➜ 開始使用 start](https://walden-wpc.github.io/BaseTransitTW/)
+* License: CC BY-NC 4.0 (Attribution-NonCommercial)
+* Data Source: TDX (Ministry of Transport)
 
 BaseTransitTW 是一個純前端執行的臺灣公車路網視覺化與「等時線（Isochrone）」探索工具。給定一個起點、時間限制與轉乘次數，系統能計算出您在指定條件內可以抵達的地理範圍。
 
